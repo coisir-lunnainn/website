@@ -1,6 +1,6 @@
 import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
 
-export const onRequest: PagesFunction = mailChannelsPlugin({
+export const onRequest = mailChannelsPlugin({
   personalizations: [
     {
       to: [{ name: "ACME Support", email: "samuel@macleod.space" }]
