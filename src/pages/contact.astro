@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import fiveTen from "../images/5-10.jpg";
 
-let submitted = false;
+let submitted = "";
 
 if (Astro.request.method === "POST") {
   try {
@@ -12,8 +12,32 @@ if (Astro.request.method === "POST") {
     const email = data.get("email");
     const message = data.get("message");
 
-    submitted = true;
-    // Do something with the data
+    const resp = await fetch("https://api.mailchannels.net/tx/v1/send", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        personalizations: [
+          { to: [{ email: "samuel@macleod.space", name: "Test Recipient" }] }
+        ],
+        from: {
+          email: "contact@coisirlunnain.dev",
+          name: "Test Sender"
+        },
+        subject: "Test Subject",
+        content: [
+          {
+            type: "text/plain",
+            value: `Test message content\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`
+          }
+        ]
+      })
+    });
+
+    const respText = await resp.text();
+
+    submitted = resp.status + " " + resp.statusText + "\n\n" + respText;
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -99,11 +123,7 @@ if (Astro.request.method === "POST") {
             >Submit</button
           >
         </div>
-        {
-          submitted ? (
-            <p class="text-lg text-center">We'll be in touch soon!</p>
-          ) : null
-        }
+        <p class="text-lg text-center">{submitted}</p>
       </form>
     </section>
     <!-- <iframe
