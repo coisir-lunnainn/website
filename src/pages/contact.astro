@@ -19,10 +19,12 @@ if (Astro.request.method === "POST") {
       },
       body: JSON.stringify({
         personalizations: [
-          { to: [{ email: "samuel@macleod.space", name: "Test Recipient" }] }
+          {
+            to: [{ email: "samuelpmacleod@icloud.com", name: "Samuel Macleod" }]
+          }
         ],
         from: {
-          email: "contact@coisirlunnain.dev",
+          email: "sender@coisirlunnainn.dev",
           name: "Test Sender"
         },
         subject: "Test Subject",
