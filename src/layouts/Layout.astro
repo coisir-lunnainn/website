@@ -1,0 +1,96 @@
+---
+import { Image } from "astro:assets";
+import logo from "../images/logo.png";
+import facebook from "openmoji/black/svg/E042.svg";
+import twitter from "openmoji/black/svg/E040.svg";
+import instagram from "openmoji/black/svg/E043.svg";
+import youtube from "openmoji/black/svg/E044.svg";
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="min-h-full">
+  <head>
+    <!-- <meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title> -->
+  </head>
+  <body class="min-h-full font-thin mx-auto max-w-[100ch]">
+    <header class="flex items-center px-10 py-4 bg-opacity-50 bg-white">
+      <a href="/">
+        <section class="grid grid-flow-col grid-rows-2">
+          <Image
+            src={logo}
+            alt="Choir Logo"
+            width="64"
+            height="80"
+            quality="max"
+            densities={[2]}
+            class="row-span-2 pr-2 shrink-0"
+          />
+          <h1 class="row-span-1 text-xl font-thin align-baseline mt-2">
+            C&ograve;isir Lunnainn
+          </h1>
+          <h2 class="row-span-1 text-md font-thin">London Gaelic Choir</h2>
+        </section>
+      </a>
+      <nav class="flex gap-3 font-thin items-center ml-auto">
+        <a href="/about">About</a>
+        <a href="/events">Events</a>
+        <a href="/history">Our History</a>
+        <!-- <a href="/gallery">Gallery</a> -->
+        <a href="https://www.facebook.com/CoisirLunnainn/" target="_blank">
+          <Image src={facebook} alt="Facebook link" width="20" height="20" />
+        </a>
+        <a href="https://twitter.com/CoisirLunnainn" target="_blank">
+          <Image src={twitter} alt="Twitter link" width="20" height="20" />
+        </a>
+        <a href="https://www.instagram.com/coisirlunnainn/" target="_blank">
+          <Image src={instagram} alt="Instagram link" width="20" height="20" />
+        </a>
+        <a
+          href="/contact"
+          class="rounded-md px-3 py-2 bg-black text-white transition-all"
+          >Get in Touch</a
+        >
+      </nav>
+    </header>
+    <slot />
+    <footer class="p-4 bg-[#f0f4f4] mt-12 flex items-center">
+      <section class="grid grid-flow-col grid-rows-1">
+        <Image
+          src={logo}
+          alt="Choir Logo"
+          width="32"
+          height="40"
+          quality="max"
+          densities={[2]}
+          class="row-span-2 pr-2 shrink-0"
+        />
+        <h1 class="row-span-1 text-lg font-thin">C&ograve;isir Lunnainn</h1>
+      </section>
+      <nav class="flex gap-3 font-thin items-center ml-auto">
+        <a href="https://www.facebook.com/CoisirLunnainn/" target="_blank">
+          <Image src={facebook} alt="Facebook link" width="20" height="20" />
+        </a>
+        <a href="https://twitter.com/CoisirLunnainn" target="_blank">
+          <Image src={twitter} alt="Twitter link" width="20" height="20" />
+        </a>
+        <a href="https://www.instagram.com/coisirlunnainn/" target="_blank">
+          <Image src={instagram} alt="Instagram link" width="20" height="20" />
+        </a>
+        <a href="https://www.youtube.com/@coisirlunnainn9924" target="_blank">
+          <Image src={youtube} alt="Youtube link" width="20" height="20" />
+        </a>
+      </nav>
+    </footer>
+  </body>
+</html>
+<style is:global></style>
