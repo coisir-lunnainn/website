@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import fiveTen from "../images/5-10.jpg";
 
-let submitted = "";
+let submitted = false;
 
 if (Astro.request.method === "POST") {
   try {
@@ -39,7 +39,11 @@ if (Astro.request.method === "POST") {
 
     const respText = await resp.text();
 
-    submitted = resp.status + " " + resp.statusText + "\n\n" + respText;
+    console.log(
+      "Email contact",
+      resp.status + " " + resp.statusText + "\n\n" + respText
+    );
+    submitted = true;
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -125,7 +129,11 @@ if (Astro.request.method === "POST") {
             >Submit</button
           >
         </div>
-        <p class="text-lg text-center">{submitted}</p>
+        {
+          submitted ? (
+            <p class="text-lg text-center">We'll be in touch soon!</p>
+          ) : null
+        }
       </form>
     </section>
     <!-- <iframe
