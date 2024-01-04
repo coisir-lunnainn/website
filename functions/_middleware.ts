@@ -8,7 +8,7 @@ export const onRequest = mailChannelsPlugin({
   ],
   from: {
     name: "ACME Support",
-    email: "choir@macleod.space"
+    email: "contact@coisirlunnainn.dev"
   },
   respondWith: () => {
     return new Response(
