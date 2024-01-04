@@ -14,6 +14,9 @@ dependencies:
   '@astrojs/tailwind':
     specifier: ^5.1.0
     version: 5.1.0(astro@4.0.8)(tailwindcss@3.4.0)
+  '@cloudflare/pages-plugin-mailchannels':
+    specifier: ^0.1.2
+    version: 0.1.2
   '@fontsource-variable/inter':
     specifier: ^5.0.16
     version: 5.0.16
@@ -414,6 +417,10 @@ packages:
       '@babel/helper-string-parser': 7.23.4
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
+    dev: false
+
+  /@cloudflare/pages-plugin-mailchannels@0.1.2:
+    resolution: {integrity: sha512-xPZNM4NEhFkxnx6JNqoWzk3zgvyoPTFb5KbBz5Z1bc4X/D3gidR776WyUVQzR5OphzTqZfFiC9B8mYUyG0WEVg==}
     dev: false
 
   /@cloudflare/workerd-darwin-64@1.20231025.0:
