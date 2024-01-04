@@ -25,13 +25,27 @@ if (Astro.request.method === "POST") {
         ],
         from: {
           email: "sender@coisirlunnainn.dev",
-          name: "Test Sender"
+          name: "Còisir Lunnainn Contact Form"
         },
-        subject: "Test Subject",
+        subject: "New Message Received",
         content: [
           {
             type: "text/plain",
-            value: `Test message content\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}\n\n`
+            value: `A new message has been received on the Còisir Lunnainn website:
+
+Name: ${name}
+Email: ${email}
+Message: ${message}
+`
+          },
+          {
+            type: "text/html",
+            value: `<p>A new message has been received on the Còisir Lunnainn website:</p>
+
+<p><b>Name:</b> ${name}</p>
+<p><b>Email:</b> ${email}</p>
+<p><b>Message:</b> ${message}</p>
+`
           }
         ]
       })
