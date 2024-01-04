@@ -15,15 +15,17 @@ const { title } = Astro.props;
 <!doctype html>
 <html lang="en" class="min-h-full">
   <head>
-    <!-- <meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title> -->
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Còisir Lunnainn [kosh-er loon-ein] was founded in London in 1891 and is the oldest running Scottish Gaelic choir in the world. "
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <title>{title} | Còisir Lunnainn</title>
   </head>
-  <body class="min-h-full font-thin mx-auto max-w-[100ch]">
-    <header class="flex items-center px-10 py-4 bg-opacity-50 bg-white">
+  <body class="min-h-full font-thin mx-auto max-w-[120ch]">
+    <header class="flex items-center px-10 py-4 bg-white sticky top-0">
       <a href="/">
         <section class="grid grid-flow-col grid-rows-2">
           <Image
@@ -41,25 +43,90 @@ const { title } = Astro.props;
           <h2 class="row-span-1 text-md font-thin">London Gaelic Choir</h2>
         </section>
       </a>
-      <nav class="flex gap-3 font-thin items-center ml-auto">
-        <a href="/about">About</a>
-        <a href="/events">Events</a>
-        <a href="/history">Our History</a>
+      <nav class="gap-3 font-thin items-center ml-auto hidden sm:flex text-xl">
+        <a href="/about" class="hidden lg:inline">About</a>
+        <a href="/events" class="hidden lg:inline">Events</a>
+        <a href="/history" class="hidden lg:inline">Our History</a>
         <!-- <a href="/gallery">Gallery</a> -->
         <a href="https://www.facebook.com/CoisirLunnainn/" target="_blank">
-          <Image src={facebook} alt="Facebook link" width="20" height="20" />
+          <Image src={facebook} alt="Facebook link" class="w-6 h-6" />
         </a>
         <a href="https://twitter.com/CoisirLunnainn" target="_blank">
-          <Image src={twitter} alt="Twitter link" width="20" height="20" />
+          <Image src={twitter} alt="Twitter link" class="w-6 h-6" />
         </a>
         <a href="https://www.instagram.com/coisirlunnainn/" target="_blank">
-          <Image src={instagram} alt="Instagram link" width="20" height="20" />
+          <Image src={instagram} alt="Instagram link" class="w-6 h-6" />
         </a>
         <a
           href="/contact"
-          class="rounded-md px-3 py-2 bg-black text-white transition-all"
+          class="rounded-md px-3 py-2 bg-black text-white transition-all hidden lg:inline"
           >Get in Touch</a
         >
+      </nav>
+      <nav class="lg:hidden ml-auto sm:ml-6">
+        <input id="menu" type="checkbox" class="peer hidden" />
+        <label for="menu" class="cursor-pointer peer-checked:hidden">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-10 h-10"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+          </svg>
+        </label>
+        <label for="menu" class="cursor-pointer hidden peer-checked:block">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-10 h-10"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"></path>
+          </svg>
+        </label>
+        <div
+          class="left-0 top-[104px] w-screen h-[calc(100vh-104px)] bg-white hidden peer-checked:block fixed"
+        >
+          <nav class="font-thin items-center flex flex-col text-2xl gap-6 mt-8">
+            <a href="/about">About</a>
+            <a href="/events">Events</a>
+            <a href="/history">Our History</a>
+            <!-- <a href="/gallery">Gallery</a> -->
+            <div class="flex gap-2">
+              <a
+                href="https://www.facebook.com/CoisirLunnainn/"
+                target="_blank"
+              >
+                <Image src={facebook} alt="Facebook link" class="w-6 h-6" />
+              </a>
+              <a href="https://twitter.com/CoisirLunnainn" target="_blank">
+                <Image src={twitter} alt="Twitter link" class="w-6 h-6" />
+              </a>
+              <a
+                href="https://www.instagram.com/coisirlunnainn/"
+                target="_blank"
+              >
+                <Image src={instagram} alt="Instagram link" class="w-6 h-6" />
+              </a>
+            </div>
+            <a
+              href="/contact"
+              class="rounded-md px-3 py-2 bg-black text-white transition-all text-lg"
+              >Get in Touch</a
+            >
+          </nav>
+        </div>
       </nav>
     </header>
     <slot />
@@ -78,16 +145,16 @@ const { title } = Astro.props;
       </section>
       <nav class="flex gap-3 font-thin items-center ml-auto">
         <a href="https://www.facebook.com/CoisirLunnainn/" target="_blank">
-          <Image src={facebook} alt="Facebook link" width="20" height="20" />
+          <Image src={facebook} alt="Facebook link" class="w-6 h-6" />
         </a>
         <a href="https://twitter.com/CoisirLunnainn" target="_blank">
-          <Image src={twitter} alt="Twitter link" width="20" height="20" />
+          <Image src={twitter} alt="Twitter link" class="w-6 h-6" />
         </a>
         <a href="https://www.instagram.com/coisirlunnainn/" target="_blank">
-          <Image src={instagram} alt="Instagram link" width="20" height="20" />
+          <Image src={instagram} alt="Instagram link" class="w-6 h-6" />
         </a>
         <a href="https://www.youtube.com/@coisirlunnainn9924" target="_blank">
-          <Image src={youtube} alt="Youtube link" width="20" height="20" />
+          <Image src={youtube} alt="Youtube link" class="w-6 h-6" />
         </a>
       </nav>
     </footer>
