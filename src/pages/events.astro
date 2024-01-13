@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import openEvening from "../images/open-evening.jpg";
 import dinner from "../images/dinner.jpg";
 import Title from "../components/Title.astro";
+import Prose from "../components/Prose.astro";
 ---
 
 <Layout title="Events">
@@ -22,9 +23,7 @@ import Title from "../components/Title.astro";
         <Title>Upcoming Events</Title>
       </div>
     </section>
-    <section
-      class="grid items-center mt-12 grid-rows-2 md:grid-rows-1 grid-cols-1 md:grid-cols-2"
-    >
+    <section class="md:grid items-start mt-12 md:grid-rows-1 md:grid-cols-2">
       <Image
         src={openEvening}
         alt="Choir Logo"
@@ -32,16 +31,59 @@ import Title from "../components/Title.astro";
         densities={[2]}
         class="self-start pl-0"
       />
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.988064191024!2d-0.1235395232443297!3d51.513434971814725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604cb22e62f5d%3A0x3352af428ce0a531!2sCrown%20Court%20Church%20of%20Scotland!5e0!3m2!1sen!2suk!4v1704326514993!5m2!1sen!2suk"
-        width="600"
-        height="450"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        class="bg-white w-full h-full"></iframe>
+      <Prose>
+        <p>
+          Còisir Lunnainn (the London Gaelic Choir) welcomes all to join us for
+          a no-obligation taster session! Our Open Evening is a chance to come
+          along and meet us, do some singing, and decide whether you’d like to
+          join. It’s a friendly and informal event; come along for a night of
+          song and general good fun.
+        </p>
+
+        <p>
+          No prior knowledge of Gaelic is necessary. We have speakers of all
+          levels in the choir, including absolute beginners.
+        </p>
+
+        <table>
+          <thead><tr><th>DETAILS</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Date:</td><td>Tuesday 30th January 2024</td>
+            </tr>
+            <tr>
+              <td>Time:</td><td>7:30pm</td>
+            </tr>
+            <tr>
+              <td>Location:</td>
+              <td>Crown Court Church, Russell Street, WC2B 5EZ</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          For more details or to RSVP, please contact <a
+            href="mailto:coisirlunnainn@gmail.com">coisirlunnainn@gmail.com</a
+          >. We hope to see you there!
+        </p>
+        <div class="text-center mt-3">
+          <a
+            href="/contact"
+            class="rounded-md px-3 py-2 bg-black text-white transition-all w-auto text-lg no-underline"
+          >
+            Contact us!
+          </a>
+        </div>
+      </Prose>
     </section>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2482.988064191024!2d-0.1235395232443297!3d51.513434971814725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604cb22e62f5d%3A0x3352af428ce0a531!2sCrown%20Court%20Church%20of%20Scotland!5e0!3m2!1sen!2suk!4v1704326514993!5m2!1sen!2suk"
+      width="600"
+      height="450"
+      style="border:0;"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      class="bg-white w-full h-full col-span-2 min-h-96 mt-10"></iframe>
   </main>
 </Layout>
 
