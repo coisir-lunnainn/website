@@ -2,7 +2,7 @@ import type { APIRoute } from "astro";
 export const prerender = false;
 
 export const PUT: APIRoute = async ({ request, params }) => {
-  return Response.json(request.headers);
+  return Response.json([...request.headers]);
   const validatedIdentity = await fetch(
     `https://coisirlunnainn.cloudflareaccess.com/cdn-cgi/access/get-identity`,
     request
