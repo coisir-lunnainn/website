@@ -1,4 +1,4 @@
-import { defineConfig, squooshImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import cloudflare from "@astrojs/cloudflare";
 
@@ -9,8 +9,5 @@ export default defineConfig({
   integrations: [tailwind(), sitemap()],
   output: "hybrid",
   site: 'https://www.coisirlunnainn.org',
-  adapter: cloudflare({
-    imageService: 'compile'
-  }),
-  image: squooshImageService(),
+  adapter: cloudflare(),
 });
