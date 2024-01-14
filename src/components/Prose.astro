@@ -3,7 +3,10 @@ import { getEntry } from "astro:content";
 
 const { label } = Astro.props;
 
-const section = await getEntry("sections", label);
+let section;
+if (label) {
+  section = await getEntry("sections", label);
+}
 ---
 
 <div
