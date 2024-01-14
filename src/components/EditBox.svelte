@@ -6,9 +6,9 @@
       el.setAttribute("contenteditable", "true");
     });
   }
-  function save() {
+  async function save() {
     editing = false;
-    document.querySelectorAll("[data-editable]").forEach(async (el) => {
+    for (const el of document.querySelectorAll("[data-editable]")) {
       console.log(el.dataset.editable, el.innerHTML);
       el.setAttribute("contenteditable", "false");
 
@@ -16,7 +16,7 @@
         body: JSON.stringify({ content: el.innerHTML }),
         method: "PUT"
       });
-    });
+    }
   }
 </script>
 
