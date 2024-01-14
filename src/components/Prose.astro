@@ -3,8 +3,11 @@ import { getEntry } from "astro:content";
 
 const { label } = Astro.props;
 
-const section = await getEntry("sections", label);
-const rendered = await section?.render();
+let rendered;
+if (label) {
+  const section = await getEntry("sections", label);
+  rendered = await section?.render();
+}
 ---
 
 <div
