@@ -5,6 +5,8 @@ import facebook from "openmoji/black/svg/E042.svg";
 import twitter from "openmoji/black/svg/E040.svg";
 import instagram from "openmoji/black/svg/E043.svg";
 import youtube from "openmoji/black/svg/E044.svg";
+import EditBox from "../components/EditBox.svelte";
+
 interface Props {
   title: string;
 }
@@ -179,6 +181,7 @@ const { title } = Astro.props;
         </a>
       </nav>
     </footer>
+    <EditBox client:load />
   </body>
 </html>
 <style is:global></style>

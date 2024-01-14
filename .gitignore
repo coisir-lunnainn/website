@@ -23,3 +23,5 @@ pnpm-debug.log*
 .wrangler
 
 functions/\[\[path\]\].js
+
+.dev.vars

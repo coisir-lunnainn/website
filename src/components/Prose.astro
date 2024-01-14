@@ -1,5 +1,15 @@
+---
+import { getEntry } from "astro:content";
+
+const { label } = Astro.props;
+
+const section = await getEntry("sections", label);
+const rendered = await section?.render();
+---
+
 <div
   class="px-4 prose sm:prose-lg prose-p:my-3 prose-h1:font-thin prose-h1:text-3xl prose-h1:mt-5 prose-h1:mb-1"
+  data-editable={label}
 >
-  <slot />
+  {rendered ? <rendered.Content /> : <slot />}
 </div>
