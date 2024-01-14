@@ -4,4 +4,4 @@
 <p>
     Còisir Lunnainn [kosh-er loon-ein] was founded in London in
     1891 and is the oldest running Scottish Gaelic choir in the world
-</p> 
+</p>

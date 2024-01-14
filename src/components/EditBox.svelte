@@ -8,9 +8,14 @@
   }
   function save() {
     editing = false;
-    document.querySelectorAll("[data-editable]").forEach((el) => {
+    document.querySelectorAll("[data-editable]").forEach(async (el) => {
       console.log(el.dataset.editable, el.innerHTML);
       el.setAttribute("contenteditable", "false");
+
+      await fetch(`/api/sections/${el.dataset.editable}`, {
+        body: JSON.stringify({ content: el.innerHTML }),
+        method: "PUT"
+      });
     });
   }
 </script>
