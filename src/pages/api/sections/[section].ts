@@ -2,6 +2,16 @@ import type { APIRoute } from "astro";
 export const prerender = false;
 
 export const PUT: APIRoute = async ({ request, params }) => {
+  const validatedIdentity = await fetch(
+    `https://coisirlunnainn.cloudflareaccess.com/cdn-cgi/access/get-identity`,
+    request
+  );
+  if (!validatedIdentity.ok) {
+    return new Response("FAIL", {
+      status: 401
+    });
+  }
+
   const token = import.meta.env.GH_PAT;
   const section = params.section;
 
