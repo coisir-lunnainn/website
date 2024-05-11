@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import openEvening from "../images/open-evening.jpg";
+import ceilidh from "../images/ceilidh-2024.png";
 import dinner from "../images/dinner.webp";
 import Title from "../components/Title.astro";
 import Prose from "../components/Prose.astro";
@@ -24,7 +24,7 @@ import Prose from "../components/Prose.astro";
     </section>
     <section class="md:grid items-start mt-12 md:grid-rows-1 md:grid-cols-2">
       <Image
-        src={openEvening}
+        src={ceilidh}
         alt="Choir Logo"
         quality="max"
         densities={[2]}
@@ -32,44 +32,52 @@ import Prose from "../components/Prose.astro";
       />
       <Prose>
         <p>
-          Còisir Lunnainn (the London Gaelic Choir) welcomes all to join us for
-          a no-obligation taster session! Our Open Evening is a chance to come
-          along and meet us, do some singing, and decide whether you’d like to
-          join. It’s a friendly and informal event; come along for a night of
-          song and general good fun.
-        </p>
-
-        <p>
-          No prior knowledge of Gaelic is necessary. We have speakers of all
-          levels in the choir, including absolute beginners.
+          Còisir Lunnainn (the London Gaelic Choir) and Comunn Gàidhlig Lunnainn
+          (the Gaelic Society of London) invite you to our Summer Ceilidh! Held
+          in the church hall at St Columba’s, Pont St, it will be an evening of
+          great music, dancing and fun. There will be a bar to whet your
+          whistle. Music will be provided by the wonderful ceilidh band,
+          Lochnagar (regulars at Cecil Sharpe and the Ceilidh Club), and a
+          raffle during the interval with prizes not to be missed. And - of
+          course - the choir will sing a couple of tunes as well. All in all,
+          it'll be a great night! All proceeds from the night go towards
+          supporting Còisir Lunnainn and Comunn Gàidhlig Lunnainn.
         </p>
 
         <table>
           <thead><tr><th>DETAILS</th></tr></thead>
           <tbody>
             <tr>
-              <td>Date:</td><td>Tuesday 30th January 2024</td>
+              <td>Date:</td><td>25 May 2024</td>
             </tr>
             <tr>
-              <td>Time:</td><td>7:30pm</td>
+              <td>Time:</td><td>Doors at 7pm / Dancing starts at 7.30pm</td>
             </tr>
             <tr>
               <td>Location:</td>
-              <td>Crown Court Church, Russell Street, WC2B 5EZ</td>
+              <td>St Columba’s Church of Scotland, Pont St, London SW1X 0BD</td>
+            </tr>
+            <tr>
+              <td>Tickets:</td>
+              <td
+                ><a href="https://comunnlunnainn.co.uk/events/default.aspx"
+                  >£20: adults / Free: children under 11</a
+                ></td
+              >
             </tr>
           </tbody>
         </table>
         <p>
-          For more details or to RSVP, please contact <a
+          If you need any more information, please contact <a
             href="mailto:coisirlunnainn@gmail.com">coisirlunnainn@gmail.com</a
           >. We hope to see you there!
         </p>
         <div class="text-center mt-3">
           <a
-            href="/contact"
+            href="https://comunnlunnainn.co.uk/events/default.aspx"
             class="rounded-md px-3 py-2 bg-black text-white transition-all w-auto text-lg no-underline"
           >
-            Contact us!
+            Buy tickets!
           </a>
         </div>
       </Prose>
