@@ -27,5 +27,10 @@
   "devDependencies": {
     "sharp": "^0.33.5",
     "wrangler": "^3.83.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@astrojs/cloudflare@11.1.0": "patches/@astrojs__cloudflare@11.1.0.patch"
+    }
   }
 }

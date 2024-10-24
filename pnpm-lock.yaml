@@ -4,13 +4,18 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@astrojs/cloudflare@11.1.0':
+    hash: nnxzn3er7k4qjqr27t7nqdgrpy
+    path: patches/@astrojs__cloudflare@11.1.0.patch
+
 dependencies:
   '@astrojs/check':
     specifier: ^0.3.4
     version: 0.3.4(typescript@5.3.3)
   '@astrojs/cloudflare':
     specifier: ^11.1.0
-    version: 11.1.0(astro@4.16.7)
+    version: 11.1.0(patch_hash=nnxzn3er7k4qjqr27t7nqdgrpy)(astro@4.16.7)
   '@astrojs/sitemap':
     specifier: ^3.0.4
     version: 3.0.4
@@ -82,7 +87,7 @@ packages:
       - prettier-plugin-astro
     dev: false
 
-  /@astrojs/cloudflare@11.1.0(astro@4.16.7):
+  /@astrojs/cloudflare@11.1.0(patch_hash=nnxzn3er7k4qjqr27t7nqdgrpy)(astro@4.16.7):
     resolution: {integrity: sha512-b3mGERtSr8gLEAczTy4iwZYXSfuj+R1ErYNTk1Wxjt7d1GArXb3+HUqefm+VI4/Pav98VRebBcnu1XJ2vf7uEQ==}
     peerDependencies:
       astro: ^4.10.3
@@ -103,6 +108,7 @@ packages:
       - supports-color
       - utf-8-validate
     dev: false
+    patched: true
 
   /@astrojs/compiler@2.10.3:
     resolution: {integrity: sha512-bL/O7YBxsFt55YHU021oL+xz+B/9HvGNId3F9xURN16aeqDK9juHGktdkCSXz+U4nqFACq6ZFvWomOzhV+zfPw==}

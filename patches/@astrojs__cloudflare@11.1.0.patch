@@ -1,0 +1,11 @@
+diff --git a/dist/entrypoints/image-endpoint.js b/dist/entrypoints/image-endpoint.js
+index a4996877e5835c0bf0d388fe99a4643726f13d9b..b6929c0ec673bb915b27483aa8085d328fd2ae35 100644
+--- a/dist/entrypoints/image-endpoint.js
++++ b/dist/entrypoints/image-endpoint.js
+@@ -7,5 +7,5 @@ export const GET = (ctx) => {
+             statusText: "Missing 'href' query parameter",
+         });
+     }
+-    return fetch(new URL(href, ctx.url.origin));
++    return ctx.locals.runtime.env.ASSETS.fetch(new URL(href, ctx.url.origin));
+ };

@@ -8,8 +8,10 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   integrations: [tailwind(), sitemap()],
   output: "hybrid",
-  site: "https://www.coisirlunnainn.org",
-  adapter: cloudflare(),
+  site: "https://coisirlunnainn.dev",
+  adapter: cloudflare({
+    imageService: "compile"
+  }),
   vite: {
     build: {
       rollupOptions: {
@@ -17,7 +19,7 @@ export default defineConfig({
       }
     },
     ssr: {
-      external: ["mimetext"]
+      external: ["os", "path"]
     }
   }
 });
