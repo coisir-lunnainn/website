@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import cloudflare from "@astrojs/cloudflare";
 
@@ -8,6 +8,16 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   integrations: [tailwind(), sitemap()],
   output: "hybrid",
-  site: 'https://www.coisirlunnainn.org',
+  site: "https://www.coisirlunnainn.org",
   adapter: cloudflare(),
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ["cloudflare:email"]
+      }
+    },
+    ssr: {
+      external: ["mimetext"]
+    }
+  }
 });

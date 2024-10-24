@@ -1,10 +1,12 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-type Runtime = import("@astrojs/cloudflare").AdvancedRuntime<Env>;
+type Runtime = import("@astrojs/cloudflare").Runtime<Env>;
 
-declare global {
-  namespace App {
-    interface Locals extends Runtime {}
+declare namespace App {
+  interface Locals extends Runtime {
+    otherLocals: {
+      test: string;
+    };
   }
 }

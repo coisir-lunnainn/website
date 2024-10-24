@@ -1,6 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "types": ["./.wrangler/types/runtime.d.ts"]
+    "types": ["./runtime.d.ts"]
   }
 }
