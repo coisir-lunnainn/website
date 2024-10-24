@@ -1,7 +1,10 @@
 ---
+const { env } = Astro.locals.runtime;
 export const prerender = false;
 import Layout from "../layouts/Layout.astro";
 import Title from "../components/Title.astro";
+import { EmailMessage } from "cloudflare:email";
+import { createMimeMessage } from "mimetext";
 
 let submitted = false;
 
@@ -12,51 +15,39 @@ if (Astro.request.method === "POST") {
     const email = data.get("email");
     const message = data.get("message");
 
-    const resp = await fetch("https://api.mailchannels.net/tx/v1/send", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json"
-      },
-      body: JSON.stringify({
-        personalizations: [
-          {
-            to: [{ email: "coisirlunnainn@gmail.com", name: "Còisir Lunnainn" }]
-          }
-        ],
-        from: {
-          email: "sender@coisirlunnainn.dev",
-          name: "Còisir Lunnainn Contact Form"
-        },
-        subject: "New Message Received",
-        content: [
-          {
-            type: "text/plain",
-            value: `A new message has been received on the Còisir Lunnainn website:
+    const msg = createMimeMessage();
+    msg.setSender({
+      name: "Còisir Lunnainn Contact Form",
+      addr: "contact@coisirlunnainn.dev"
+    });
+    msg.setRecipient("samuelpmacleod@icloud.com");
+    msg.setSubject("New Message Received");
+    msg.addMessage({
+      contentType: "text/plain",
+      data: `A new message has been received on the Còisir Lunnainn website:
 
 Name: ${name}
 Email: ${email}
 Message: ${message}
 `
-          },
-          {
-            type: "text/html",
-            value: `<p>A new message has been received on the Còisir Lunnainn website:</p>
+    });
+    msg.addMessage({
+      contentType: "text/html",
+      data: `<p>A new message has been received on the Còisir Lunnainn website:</p>
 
 <p><b>Name:</b> ${name}</p>
 <p><b>Email:</b> ${email}</p>
 <p><b>Message:</b> ${message}</p>
 `
-          }
-        ]
-      })
     });
 
-    const respText = await resp.text();
-
-    console.log(
-      "Email contact",
-      resp.status + " " + resp.statusText + "\n\n" + respText
+    const e = new EmailMessage(
+      "contact@coisirlunnainn.dev",
+      "samuelpmacleod@icloud.com",
+      msg.asRaw()
     );
+    await env.SEND.send(e);
+
     submitted = true;
   } catch (error) {
     if (error instanceof Error) {

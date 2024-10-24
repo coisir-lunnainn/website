@@ -7,3 +7,7 @@ assets = { directory = "./dist", binding = "ASSETS" }
 
 [observability]
 enabled = true
+
+[[send_email]]
+name = "SEND"
+destination_address = "samuelpmacleod@icloud.com"
