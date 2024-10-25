@@ -21,7 +21,7 @@ if (Astro.request.method === "POST") {
       name: "Còisir Lunnainn Contact Form",
       addr: "contact@coisirlunnainn.dev"
     });
-    msg.setRecipient("samuelpmacleod@icloud.com");
+    msg.setRecipient("coisirlunnainn@gmail.com");
     msg.setSubject("New Message Received");
     msg.addMessage({
       contentType: "text/plain",
@@ -44,7 +44,7 @@ Message: ${message}
 
     const e = new EmailMessage(
       "contact@coisirlunnainn.dev",
-      "samuelpmacleod@icloud.com",
+      "coisirlunnainn@gmail.com",
       msg.asRaw()
     );
     await env.SEND.send(e);
