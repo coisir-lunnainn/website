@@ -3,13 +3,14 @@ const { env } = Astro.locals.runtime;
 export const prerender = false;
 import Layout from "../layouts/Layout.astro";
 import Title from "../components/Title.astro";
-import { EmailMessage } from "cloudflare:email";
 import { createMimeMessage } from "mimetext";
 
 let submitted = false;
 
 if (Astro.request.method === "POST") {
   try {
+    const { EmailMessage } = await import("cloudflare:email");
+
     const data = await Astro.request.formData();
     const name = data.get("name");
     const email = data.get("email");
