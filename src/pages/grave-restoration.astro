@@ -1,0 +1,94 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Prose from "../components/Prose.astro";
+import { Image } from "astro:assets";
+import restoration from "../images/grave-restoration.jpg";
+---
+
+<Layout title="Margrat Duncan Grave Restoration">
+  <main>
+    <section class="grid items-end h-96">
+      <Image
+        src={restoration}
+        alt="History"
+        class="w-full row-start-1 col-start-1 object-cover h-96"
+        loading="eager"
+      />
+      <div
+        class="text-center mt-6 flex flex-col gap-4 max-w-[70ch] mx-auto bg-white row-start-1 col-start-1 p-10"
+      >
+        <h1 class="text-3xl md:text-5xl">Margrat Duncan Grave Restoration</h1>
+      </div>
+    </section>
+    <section class="grid items-center mt-12 max-w-[70ch] mx-auto">
+      <a
+        href="https://www.crowdfunder.co.uk/p/margrat-duncan-grave-restoration"
+        class="rounded-md px-4 py-3 mx-auto bg-red-400 text-white transition-all text-lg text-center"
+        >Donate Now!</a
+      >
+      <Prose>
+        <p>
+          Margrat McIsaac Duncan was one of the greatest Gaelic singers of her
+          time. She was born in Islay in 1888 and began singing at an early age,
+          winning the Junior Silver Medal at the Inverness Mòd in 1903, and the
+          Gold Medal at the Stirling Mòd in 1909. Margrat moved to London where
+          she sang with Còisir Lunnainn, the London Gaelic Choir. She was
+          offered the conductorship of the choir, but was unable to commit
+          because of touring obligations. Instead, she served on the choir’s
+          music committee and conducted the Còisir Lunnainn Ladies’ Choir at
+          Còisir Lunnain’s first Mòd in Greenock in 1925.
+        </p><p>
+          Margrat passed away in London in 1948 and was buried in Twickenham
+          Cemetery. After her death, the Glasgow Islay Association opened a
+          memorial fund to perpetuate her legacy and commemorate her long and
+          outstanding services to Gaelic music. This resulted in the Margrat
+          Duncan Memorial Trophy, for which Còisir Lunnainn competes alongside
+          other area choirs today.
+        </p><p>
+          Last year, before the Mòd in Paisley, members of Còisir Lunnainn made
+          a pilgrimage to Margrat’s grave and noted that the headstone had
+          become faded and lopsided over the years and that the ground around
+          the grave had become uneven.
+        </p><p>
+          Còisir Lunnainn is working to have Margrat’s grave restored as a way
+          to show our appreciation for this remarkable singer, someone we are
+          proud to count as part of the Còisir Lunnainn family.
+        </p><p>
+          We have received quotations for the work necessary to restore the
+          grave, and they come to a little more than £2000. Còisir Lunnainn will
+          be giving a substantial donation to this sum, and raising funds
+          through concerts and events during 2024. We hope to make up the rest
+          of the amount in donations from our fellow choirs and from individuals
+          and organisations all over the world who want to contribute to
+          commemorating Margrat Duncan.
+        </p><p>
+          Any remaining amount from this fundraising effort, after the
+          restoration of Margrat’s gravestone will be donated to the following
+          charities:
+
+          <ul>
+            <li>
+              <a href="https://scotscare.com">Scotscare</a>, the charity for
+              Scots in London
+            </li><li>
+              <a href="https://www.agar-trust.org.uk">The Agar Trust</a>,
+              supporting young people in rural Scotland, who demonstrate
+              exceptional musical ability and potential and wish to further
+              their musical education
+            </li><li>
+              <a href="
+              https://glpt.org.uk/about/"
+                >Urras Brosnachaidh na Gàidhlig</a
+              >, the Gaelic Language Promotion Trust, working across Scotland to
+              support and promote the teaching, learning and use of Gaelic, and
+              the study and cultivation of Gaelic literature, history music and
+              art
+            </li>
+          </ul>
+        </p>
+      </Prose>
+    </section>
+
+    <style></style>
+  </main>
+</Layout>
