@@ -1,11 +1,11 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import rehearsal from "../images/rehearsal.webp";
-import members from "../images/mod-24-choir.webp";
-import Title from "../components/Title.astro";
-import Prose from "../components/Prose.astro";
-import InfoBox from "../components/InfoBox.astro";
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import rehearsal from '../images/rehearsal.webp';
+import members from '../images/mod-24-choir.webp';
+import Title from '../components/Title.astro';
+import Prose from '../components/Prose.astro';
+import InfoBox from '../components/InfoBox.astro';
 ---
 
 <Layout title="Home">
@@ -43,26 +43,28 @@ import InfoBox from "../components/InfoBox.astro";
             Get in Touch
           </a>
         </div>
-        <Prose>
-          <p>
-            C&ograve;isir Lunnainn is currently fundraising to restore the
-            gravestone of Margrat Duncan, an influential Gaelic singer who
-            passed away in 1948.
-          </p>
-        </Prose>
-        <div class="flex gap-2 mx-auto">
-          <a
-            href="/grave-restoration"
-            class="rounded-md px-3 py-2 bg-black text-white transition-all w-auto text-lg"
-          >
-            Learn more
-          </a>
-          <a
-            href="https://www.crowdfunder.co.uk/p/margrat-duncan-grave-restoration"
-            class="rounded-md px-3 py-2 bg-red-400 text-white transition-all w-auto text-lg"
-          >
-            Donate
-          </a>
+        <div class="p-2 bg-[#006736] rounded-lg text-white">
+          <Prose>
+            <p class="text-white mt-0">
+              C&ograve;isir Lunnainn is currently fundraising to restore the
+              gravestone of Margrat Duncan, an influential Gaelic singer who
+              passed away in 1948.
+            </p>
+          </Prose>
+          <div class="flex gap-2 mx-auto justify-center">
+            <a
+              href="/grave-restoration"
+              class="rounded-md px-3 py-2 bg-black text-white transition-all w-auto text-lg"
+            >
+              Learn more
+            </a>
+            <a
+              href="https://www.crowdfunder.co.uk/p/margrat-duncan-grave-restoration"
+              class="rounded-md px-3 py-2 bg-white text-black transition-all w-auto text-lg"
+            >
+              Donate
+            </a>
+          </div>
         </div>
       </div>
     </section>
