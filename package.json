@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.3.4",
-    "@astrojs/cloudflare": "^11.1.0",
+    "@astrojs/cloudflare": "11.1.0",
     "@astrojs/sitemap": "^3.0.4",
     "@astrojs/tailwind": "^5.1.0",
     "@cloudflare/pages-plugin-mailchannels": "^0.1.2",
@@ -31,6 +31,14 @@
   "pnpm": {
     "patchedDependencies": {
       "@astrojs/cloudflare@11.1.0": "patches/@astrojs__cloudflare@11.1.0.patch"
-    }
+    },
+    "ignoredBuiltDependencies": [
+      "core-js-pure"
+    ],
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
   }
 }
