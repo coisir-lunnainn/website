@@ -1,0 +1,55 @@
+local_backend: true
+backend:
+  name: github
+  repo: coisir-lunnainn/website
+  branch: main # Branch to update (optional; defaults to master)
+  site_domain: https://www.coisirlunnainn.org
+  base_url: https://www.coisirlunnainn.org
+
+  auth_endpoint: /api/auth
+media_folder: src/images
+public_folder: /public
+collections:
+  - name: "pages"
+    label: "Pages"
+    label_singular: "Post"
+    folder: "src/data/pages"
+    create: true
+    slug: "{{slug}}"
+    path: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Featured Image"
+        name: "banner"
+        widget: "image"
+        choose_url: false
+        media_folder: "/public"
+      - {
+          label: "Image Style",
+          name: "istyle",
+          widget: "string",
+          default: "w-full row-start-1 col-start-1 object-cover h-96"
+        }
+      - { label: "Order", name: "order", widget: "number" }
+      - { label: "Menu label", name: "menu_title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Visible", name: "visible", widget: "boolean" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - label: "Site Config"
+    name: "site"
+    files:
+      - label: "Site Config"
+        name: "about"
+        file: "src/data/site.yml"
+        fields:
+          - {
+              label: Main Image,
+              name: main_image,
+              widget: image,
+              choose_url: false,
+              media_folder: "/public"
+            }
+          - { label: Intro, name: intro, widget: markdown }

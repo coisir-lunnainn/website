@@ -1,19 +1,27 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import rehearsal from '../images/rehearsal.webp';
-import members from '../images/mod-24-choir.webp';
-import Title from '../components/Title.astro';
-import Prose from '../components/Prose.astro';
-import InfoBox from '../components/InfoBox.astro';
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import rehearsal from "../images/rehearsal.webp";
+import members from "../images/mod-24-choir.webp";
+import Title from "../components/Title.astro";
+import Prose from "../components/Prose.astro";
+import InfoBox from "../components/InfoBox.astro";
+import { getEntry, render } from "astro:content";
+
+const entry = await getEntry("pages", "about");
+const { Content } = await render(entry!);
+
+const config = await getEntry("config", "site");
 ---
 
 <Layout title="Home">
   <main>
     <section class="grid items-end min-h-[700px]">
       <Image
-        src={members}
+        src={config?.data.main_image}
         alt="Members"
+        width={1920}
+        height={1080}
         class="w-full row-start-1 col-start-1 self-start"
         loading="eager"
       />
@@ -26,61 +34,13 @@ import InfoBox from '../components/InfoBox.astro';
           Ce&ograve;l - C&agrave;irdeas - Cli&ugrave;
         </p>
         <Prose>
-          <p>
-            F&agrave;ilte gu l&agrave;rach-l&igrave;n C&ograve;isir Lunnainn //
-            Welcome to the London Gaelic Choir's website
-          </p>
-          <p>
-            C&ograve;isir Lunnainn [kosh-er loon-ein] was founded in London in
-            1891 and is the oldest running Scottish Gaelic choir in the world.
-          </p>
+          {config?.data.intro}
         </Prose>
-        <div>
-          <a
-            href="/contact"
-            class="rounded-md px-3 py-2 bg-black text-white transition-all w-auto text-lg"
-          >
-            Get in Touch
-          </a>
-        </div>
-        <div class="p-2 bg-[#006736] rounded-lg text-white">
-          <Prose>
-            <p class="text-white mt-0">
-              C&ograve;isir Lunnainn is currently fundraising to restore the
-              gravestone of Margrat Duncan, an influential Gaelic singer who
-              passed away in 1948.
-            </p>
-          </Prose>
-          <div class="flex gap-2 mx-auto justify-center">
-            <a
-              href="/grave-restoration"
-              class="rounded-md px-3 py-2 bg-black text-white transition-all w-auto text-lg"
-            >
-              Learn more
-            </a>
-            <a
-              href="https://www.crowdfunder.co.uk/p/margrat-duncan-grave-restoration"
-              class="rounded-md px-3 py-2 bg-white text-black transition-all w-auto text-lg"
-            >
-              Donate
-            </a>
-          </div>
-        </div>
       </div>
     </section>
-    <InfoBox src={rehearsal} alt="Choir rehearsal">
-      <Title>ABOUT THE CHOIR</Title>
+    <InfoBox src={entry?.data.banner} alt="Choir rehearsal">
       <Prose>
-        <p>
-          Coisir Lunnainn is a friendly, non-auditioned choir, and we welcome
-          all levels of Gaelic&mdash;whether you are a native speaker, a learner
-          or you're just keen to give it a go.
-        </p>
-        <p>
-          We rehearse on Tuesday evenings, and have made these hybrid
-          online/in-person rehearsals since March 2020, allowing all past and
-          present members to connect, no matter where they are in the world.
-        </p>
+        <Content />
       </Prose>
     </InfoBox>
   </main>

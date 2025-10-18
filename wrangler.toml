@@ -5,7 +5,9 @@ compatibility_flags = ["nodejs_compat"]
 main = "./dist/_worker.js/index.js"
 assets = { directory = "./dist", binding = "ASSETS" }
 
-routes = [{pattern = "coisirlunnainn.dev", custom_domain = true}]
+vars = { GITHUB_CLIENT_ID = "Ov23liGzAsxk1oNlWZTj"}
+
+# routes = [{pattern = "coisirlunnainn.dev", custom_domain = true}]
 
 [observability]
 enabled = true

@@ -7,19 +7,19 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), sitemap()],
-  output: "hybrid",
-  site: "https://coisirlunnainn.dev",
+  output: "server",
+  site: "https://coisirlunnainn.org",
   adapter: cloudflare({
     imageService: "compile"
   }),
   vite: {
     build: {
       rollupOptions: {
-        external: ["cloudflare:email"]
+        external: ["cloudflare:email", "cloudflare:workers"]
       }
     },
     ssr: {
-      external: ["os", "path"]
+      external: ["node:os", "path", "cloudflare:workers"]
     }
   }
 });

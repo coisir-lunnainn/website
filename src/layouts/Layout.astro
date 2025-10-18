@@ -10,6 +10,10 @@ interface Props {
 }
 
 const { title } = Astro.props;
+import { getCollection } from "astro:content";
+const pages = await getCollection("pages");
+
+console.log({ pages });
 ---
 
 <!doctype html>
@@ -66,11 +70,21 @@ const { title } = Astro.props;
       </a>
 
       <nav class="gap-3 font-thin items-center ml-auto hidden sm:flex text-xl">
-        <a href="/about" class="hidden lg:inline">About</a>
+        {
+          pages
+            .filter((page) => !!page.data.visible)
+            .toSorted((a, b) => a.data.order - b.data.order)
+            .map((page) => (
+              <a class="hidden lg:inline" href={page.data.slug}>
+                {page.data.menu_title}
+              </a>
+            ))
+        }
+        <!-- <a href="/about" class="hidden lg:inline">About</a> -->
         <!-- <a href="/events" class="hidden lg:inline">Events</a> -->
         <!-- <a href="/mod-2024" class="hidden lg:inline">Mòd 2024</a> -->
-        <a href="/mod-2025" class="hidden lg:inline">Mòd 2025</a>
-        <a href="/history" class="hidden lg:inline">Our History</a>
+        <!-- <a href="/mod-2025" class="hidden lg:inline">Mòd 2025</a> -->
+        <!-- <a href="/history" class="hidden lg:inline">Our History</a> -->
         <!-- <a href="/gallery">Gallery</a> -->
         <a href="https://www.facebook.com/CoisirLunnainn/" target="_blank">
           <Image src={facebook} alt="Facebook link" class="w-6 h-6" />
@@ -131,11 +145,19 @@ const { title } = Astro.props;
           class="left-0 top-[104px] w-screen h-[calc(100vh-104px)] bg-white hidden peer-checked:block fixed"
         >
           <nav class="font-thin items-center flex flex-col text-2xl gap-6 mt-8">
-            <a href="/about">About</a>
+            {
+              pages
+                .filter((page) => !!page.data.visible)
+                .toSorted((a, b) => a.data.order - b.data.order)
+                .map((page) => (
+                  <a href={page.data.slug}>{page.data.menu_title}</a>
+                ))
+            }
+            <!-- <a href="/about">About</a> -->
             <!-- <a href="/events">Events</a> -->
             <!-- <a href="/mod-2024">Mòd 2024</a> -->
-            <a href="/mod-2025">Mòd 2025</a>
-            <a href="/history">Our History</a>
+            <!-- <a href="/mod-2025">Mòd 2025</a> -->
+            <!-- <a href="/history">Our History</a> -->
             <!-- <a href="/gallery">Gallery</a> -->
             <div class="flex gap-2">
               <a

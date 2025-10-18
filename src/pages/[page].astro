@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import groupPhoto from "../images/mod-24-fans.webp";
+import massedChoirs from "../images/massed-choirs.webp";
+import Title from "../components/Title.astro";
+import Prose from "../components/Prose.astro";
+import InfoBox from "../components/InfoBox.astro";
+
+import { getEntry, render } from "astro:content";
+
+const entry = await getEntry("pages", Astro.params.page!);
+const { Content } = await render(entry!);
+---
+
+<Layout title={entry?.data.title}>
+  <main>
+    <section class="grid items-end h-96">
+      <Image
+        src={entry?.data.banner}
+        alt="Banner Image"
+        width={1000}
+        height={400}
+        loading="eager"
+        class={entry?.data.istyle}
+      />
+      <div
+        class="text-center mt-6 flex flex-col gap-4 max-w-[70ch] mx-auto bg-white row-start-1 col-start-1 p-10"
+      >
+        <Title>{entry?.data.title}</Title>
+      </div>
+    </section>
+    <section class="grid items-center mt-12 max-w-[70ch] mx-auto">
+      <Prose>
+        <Content />
+      </Prose>
+    </section>
+  </main>
+</Layout>
+
+<style></style>
