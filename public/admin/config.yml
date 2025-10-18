@@ -1,4 +1,4 @@
-local_backend: true
+# local_backend: true
 backend:
   name: github
   repo: coisir-lunnainn/website
@@ -26,6 +26,7 @@ collections:
         widget: "image"
         choose_url: false
         media_folder: "/public"
+        public_folder: "/"
       - {
           label: "Image Style",
           name: "istyle",
@@ -50,6 +51,7 @@ collections:
               name: main_image,
               widget: image,
               choose_url: false,
-              media_folder: "/public"
+              media_folder: "/public",
+              public_folder: "/"
             }
           - { label: Intro, name: intro, widget: markdown }

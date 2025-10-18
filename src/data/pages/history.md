@@ -2,7 +2,7 @@
 istyle: w-full row-start-1 col-start-1 object-cover h-96
 name: Our History
 title: Our History
-banner: /public/history.webp
+banner: /history.webp
 order: 3
 menu_title: Our History
 slug: history
