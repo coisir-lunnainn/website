@@ -1,19 +1,15 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../images/logo.png";
-import facebook from "openmoji/black/svg/E042.svg";
-import twitter from "openmoji/black/svg/E040.svg";
-import instagram from "openmoji/black/svg/E043.svg";
-import youtube from "openmoji/black/svg/E044.svg";
+
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 const pages = await getCollection("pages");
 
-console.log({ pages });
+const config = await getEntry("config", "site");
 ---
 
 <!doctype html>
@@ -54,7 +50,7 @@ console.log({ pages });
       <a href="/">
         <section class="grid grid-flow-col grid-rows-2">
           <Image
-            src={logo}
+            src={config?.data.logo}
             alt="Choir Logo"
             width="64"
             height="80"
@@ -87,16 +83,34 @@ console.log({ pages });
         <!-- <a href="/history" class="hidden lg:inline">Our History</a> -->
         <!-- <a href="/gallery">Gallery</a> -->
         <a href="https://www.facebook.com/CoisirLunnainn/" target="_blank">
-          <Image src={facebook} alt="Facebook link" class="w-6 h-6" />
+          <Image
+            src="/facebook.svg"
+            alt="Facebook link"
+            width={24}
+            height={24}
+            class="w-6 h-6"
+          />
         </a>
         <!-- <a href="https://twitter.com/CoisirLunnainn" target="_blank">
           <Image src={twitter} alt="Twitter link" class="w-6 h-6" />
         </a> -->
         <a href="https://www.instagram.com/coisirlunnainn/" target="_blank">
-          <Image src={instagram} alt="Instagram link" class="w-6 h-6" />
+          <Image
+            src="/instagram.svg"
+            width={24}
+            height={24}
+            alt="Instagram link"
+            class="w-6 h-6"
+          />
         </a>
         <a href="https://www.youtube.com/@coisirlunnainn9924" target="_blank">
-          <Image src={youtube} alt="Youtube link" class="w-6 h-6" />
+          <Image
+            src="/youtube.svg"
+            width={24}
+            height={24}
+            alt="Youtube link"
+            class="w-6 h-6"
+          />
         </a>
         <a
           href="https://www.crowdfunder.co.uk/p/margrat-duncan-grave-restoration"
@@ -164,22 +178,40 @@ console.log({ pages });
                 href="https://www.facebook.com/CoisirLunnainn/"
                 target="_blank"
               >
-                <Image src={facebook} alt="Facebook link" class="w-6 h-6" />
+                <Image
+                  src="/facebook.svg"
+                  alt="Facebook link"
+                  width={24}
+                  height={24}
+                  class="w-6 h-6"
+                />
               </a>
               <!-- <a href="https://twitter.com/CoisirLunnainn" target="_blank">
-                <Image src={twitter} alt="Twitter link" class="w-6 h-6" />
-              </a> -->
+          <Image src={twitter} alt="Twitter link" class="w-6 h-6" />
+        </a> -->
               <a
                 href="https://www.instagram.com/coisirlunnainn/"
                 target="_blank"
               >
-                <Image src={instagram} alt="Instagram link" class="w-6 h-6" />
+                <Image
+                  src="/instagram.svg"
+                  width={24}
+                  height={24}
+                  alt="Instagram link"
+                  class="w-6 h-6"
+                />
               </a>
               <a
                 href="https://www.youtube.com/@coisirlunnainn9924"
                 target="_blank"
               >
-                <Image src={youtube} alt="Youtube link" class="w-6 h-6" />
+                <Image
+                  src="/youtube.svg"
+                  width={24}
+                  height={24}
+                  alt="Youtube link"
+                  class="w-6 h-6"
+                />
               </a>
             </div>
             <a
@@ -200,7 +232,7 @@ console.log({ pages });
     <footer class="p-4 bg-[#f0f4f4] mt-12 flex items-center">
       <section class="grid grid-flow-col grid-rows-1">
         <Image
-          src={logo}
+          src={config?.data.logo}
           alt="Choir Logo"
           width="32"
           height="40"
@@ -212,16 +244,34 @@ console.log({ pages });
       </section>
       <nav class="flex gap-3 font-thin items-center ml-auto">
         <a href="https://www.facebook.com/CoisirLunnainn/" target="_blank">
-          <Image src={facebook} alt="Facebook link" class="w-6 h-6" />
+          <Image
+            src="/facebook.svg"
+            alt="Facebook link"
+            width={24}
+            height={24}
+            class="w-6 h-6"
+          />
         </a>
         <!-- <a href="https://twitter.com/CoisirLunnainn" target="_blank">
           <Image src={twitter} alt="Twitter link" class="w-6 h-6" />
         </a> -->
         <a href="https://www.instagram.com/coisirlunnainn/" target="_blank">
-          <Image src={instagram} alt="Instagram link" class="w-6 h-6" />
+          <Image
+            src="/instagram.svg"
+            width={24}
+            height={24}
+            alt="Instagram link"
+            class="w-6 h-6"
+          />
         </a>
         <a href="https://www.youtube.com/@coisirlunnainn9924" target="_blank">
-          <Image src={youtube} alt="Youtube link" class="w-6 h-6" />
+          <Image
+            src="/youtube.svg"
+            width={24}
+            height={24}
+            alt="Youtube link"
+            class="w-6 h-6"
+          />
         </a>
       </nav>
     </footer>

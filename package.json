@@ -29,9 +29,7 @@
     "wrangler": "^3.83.0"
   },
   "pnpm": {
-    "patchedDependencies": {
-      "@astrojs/cloudflare": "patches/@astrojs__cloudflare.patch"
-    },
+    "patchedDependencies": {},
     "ignoredBuiltDependencies": [
       "core-js-pure"
     ],
