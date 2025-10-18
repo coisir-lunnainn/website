@@ -1,8 +1,8 @@
 ---
-istyle: w-full row-start-1 col-start-1 object-cover h-96 self-start object-top
+istyle: w-full row-start-1 col-start-1 object-cover h-96
 name: About the Choir
 title: About the Choir
-banner: /mod-24-fans.webp
+banner: /img_9172.webp
 order: 2
 menu_title: About
 slug: about
