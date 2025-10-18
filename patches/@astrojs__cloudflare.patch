@@ -1,0 +1,13 @@
+diff --git a/dist/entrypoints/image-endpoint.js b/dist/entrypoints/image-endpoint.js
+index 8ed9e8fb4bae18d3d23c1093b71cbfbe4af13cea..1732bce9229e2cacc2a2edb7029242f311329425 100644
+--- a/dist/entrypoints/image-endpoint.js
++++ b/dist/entrypoints/image-endpoint.js
+@@ -21,7 +21,7 @@ const GET = (ctx) => {
+   if (proxied.origin !== ctx.url.origin) {
+     return new Response("Forbidden", { status: 403 });
+   }
+-  return fetch(proxied);
++  return ctx.locals.runtime.env.ASSETS.fetch(proxied);
+ };
+ export {
+   GET,
