@@ -27,17 +27,49 @@ collections:
         choose_url: false
         media_folder: "/public"
         public_folder: "/"
-      - {
-          label: "Image Style",
-          name: "istyle",
-          widget: "string",
-          default: "w-full row-start-1 col-start-1 object-cover h-96"
-        }
+
       - { label: "Order", name: "order", widget: "number" }
       - { label: "Menu label", name: "menu_title", widget: "string" }
       - { label: "Slug", name: "slug", widget: "string" }
       - { label: "Visible", name: "visible", widget: "boolean" }
       - { label: "Body", name: "body", widget: "markdown" }
+  - name: "events"
+    label: "Events"
+    label_singular: "Event"
+    folder: "src/data/events"
+    create: true
+    slug: "{{slug}}"
+    path: "{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - label: "Featured Image"
+        name: "banner"
+        widget: "image"
+        choose_url: false
+        media_folder: "/public"
+        public_folder: "/"
+
+      - { label: "Date", name: "date", widget: "string" }
+      - { label: "Time", name: "time", widget: "string" }
+      - { label: "Location", name: "location", widget: "string" }
+
+      - { label: "Tickets (description)", name: "tickets", widget: "string" }
+      - {
+          label: "Tickets (link)",
+          name: "tickets_link",
+          widget: "string",
+          required: false
+        }
+      - { label: "Visible", name: "visible", widget: "boolean" }
+      - {
+          label: "Google Maps Embed",
+          name: "maps",
+          widget: "string",
+          required: false
+        }
+      - { label: "Description", name: "body", widget: "markdown" }
 
   - label: "Site Config"
     name: "site"

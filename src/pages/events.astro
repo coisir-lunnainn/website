@@ -5,110 +5,96 @@ import ceilidh from "../images/sng-ceilidh.webp";
 import members from "../images/mod-24-choir.webp";
 import Title from "../components/Title.astro";
 import Prose from "../components/Prose.astro";
+import { getCollection } from "astro:content";
+import { render } from "astro:content";
+import InfoBox from "../components/InfoBox.astro";
+
+const events = (await getCollection("events")).filter((e) => e.data.visible);
+
+const currentEvent = events[0];
+
+const { Content } = await render(currentEvent);
 ---
 
 <Layout title="Events">
   <main>
-    <section class="grid items-end h-96">
-      <Image
-        src={members}
-        alt="Choir members"
-        loading="eager"
-        class="w-full row-start-1 col-start-1 object-cover h-96 self-start object-top"
-      />
+    <section class="grid items-end mx-4">
       <div
-        class="text-center mt-6 flex flex-col gap-4 max-w-[70ch] mx-auto bg-white row-start-1 col-start-1 p-10"
+        class="text-center sm:mb-4 mt-4 sm:mt-0 flex flex-col gap-1 sm:max-w-[70ch] sm:mx-auto rounded-md sm:row-start-1 col-start-1 p-4 md:p-6"
       >
-        <Title>Upcoming Events</Title>
+        <Title>{currentEvent.data.title}</Title>
       </div>
     </section>
-    <section class="md:grid items-start mt-12 md:grid-rows-1 md:grid-cols-2">
-      <Image
-        src={ceilidh}
-        alt="Event Flyer"
-        quality="max"
-        densities={[2]}
-        class="self-start pl-0"
-      />
+
+    <InfoBox src={currentEvent?.data.banner}>
       <Prose>
-        <p>
-          Còisir Lunnainn (the London Gaelic Choir) and Comunn Gàidhlig Lunnainn
-          (the Gaelic Society of London) invite you to celebrate Seachdain na
-          Gàidlig (World Scottish Gaelic Week) with us! This year’s theme for
-          Seachdain na Gàidlig is Ceanglaichean gun Chrìch, which signifies
-          “Building Connections” in English. And what better way for us to build
-          connections with London’s Gaelic speakers and learners, and the wider
-          community of London-based Gaels (whether by heritage or spirit) than
-          with a concert of Gaelic music and a ceilidh dance!
-        </p>
-        <p>
-          Starting at 6.30pm, Còisir Lunnainn will perform a short selection of
-          Gaelic songs, including ones where audience participation is strongly
-          encouraged! Then its time for ceilidh dancing, with the amazing
-          Lochnagar ceilidh band accompanying us. Don’t worry if you don’t know
-          your Dashing White Sergeant from your Gay Gordons; there will be a
-          caller to talk you through the dances and help everyone take part. And
-          – of course – it wouldn’t be a ceilidh without a raffle. By the end of
-          the night, you should be walking away with a smile on your face, a new
-          pal or two and (if you are lucky) a prize.
-        </p>
-        <p>
-          Air a mhaoineachadh le Seachdain na Gàidhlig tro Mhaoin nan Tabhartas
-          Beag, le taic bho Bhòrd na Gàidhlig // Funded by Seachdain na
-          Gàidhlig’s Small Grants Fund with support from Bòrd na Gàidhlig.
-        </p>
-        <p>
-          Seachdain na Gàidhlig 2025 will take place from 24th February - 2nd
-          March 2025. For a full list of events running throughout the week and
-          information on how to get involved, visit:
-          www.seachdainnagaidhlig.scot.
-        </p>
-        <table>
-          <thead><tr><th>DETAILS</th></tr></thead>
-          <tbody>
-            <tr>
-              <td>Date:</td><td>1st March 2025</td>
-            </tr>
-            <tr>
-              <td>Time:</td><td>6:30pm</td>
-            </tr>
-            <tr>
-              <td>Location:</td>
-              <td>London Scottish House, 95 Horseferry Rd, London SW1P 2QS</td>
-            </tr>
-            <tr>
-              <td>Tickets:</td>
-              <td
-                ><a href="https://comunnlunnainn.co.uk/events/default.aspx"
-                  >£20: adults / £10: 11-18 year olds / Free: children under 11</a
-                ></td
-              >
-            </tr>
-          </tbody>
-        </table>
-        <p>
-          If you need any more information, please contact <a
-            href="mailto:coisirlunnainn@gmail.com">coisirlunnainn@gmail.com</a
-          >. We hope to see you there!
-        </p>
-        <div class="text-center mt-3">
-          <a
-            href="https://comunnlunnainn.co.uk/events/default.aspx"
-            class="rounded-md px-3 py-2 bg-black text-white transition-all w-auto text-lg no-underline"
-          >
-            Buy tickets!
-          </a>
-        </div>
+        <Content />
       </Prose>
-    </section>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.9761740640706!2d-0.13565872401876858!3d51.49530471158769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4876050065aac33b%3A0xf280191f2c68b6e8!2sLondon%20Scottish%20House!5e0!3m2!1sen!2suk!4v1737937232951!5m2!1sen!2suk"
-      width="600"
-      height="450"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      class="bg-white w-full h-full col-span-2 min-h-96 mt-10"></iframe>
+    </InfoBox>
+
+    <div
+      class="mx-4 grid bg-gray-100 rounded-md h-full grid-flow-row grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-2"
+    >
+      <div class="py-4">
+        <Prose>
+          <table>
+            <thead><tr><th>DETAILS</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Date:</td><td>{currentEvent?.data.date}</td>
+              </tr>
+              <tr>
+                <td>Time:</td><td>{currentEvent?.data.time}</td>
+              </tr>
+              <tr>
+                <td>Location:</td>
+                <td>{currentEvent?.data.location}</td>
+              </tr>
+              <tr>
+                <td>Tickets:</td>
+                <td>
+                  {
+                    currentEvent?.data.tickets_link ? (
+                      <a href={currentEvent?.data.tickets_link}>
+                        {currentEvent?.data.tickets}
+                      </a>
+                    ) : (
+                      currentEvent?.data.tickets
+                    )
+                  }
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            If you need any more information, please contact <a
+              href="mailto:coisirlunnainn@gmail.com">coisirlunnainn@gmail.com</a
+            >. We hope to see you there!
+          </p>
+          {
+            currentEvent?.data.tickets_link && (
+              <div class="text-center mt-3">
+                <a
+                  href={currentEvent?.data.tickets_link}
+                  class="rounded-md px-3 py-2 bg-black text-white transition-all w-auto text-lg no-underline"
+                >
+                  Buy tickets!
+                </a>
+              </div>
+            )
+          }
+        </Prose>
+      </div>
+      <iframe
+        src={currentEvent?.data.maps}
+        width="600"
+        height="450"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="bg-white w-full h-full col-span-2 min-h-96 row-start-2 col-start-1 md:row-start-1 md:col-start-2 rounded-md"
+      ></iframe>
+    </div>
   </main>
 </Layout>

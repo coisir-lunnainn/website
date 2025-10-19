@@ -9,6 +9,7 @@ interface Props {
 const { title } = Astro.props;
 import { getCollection, getEntry } from "astro:content";
 const pages = await getCollection("pages");
+const events = await getCollection("events");
 
 const config = await getEntry("config", "site");
 ---
@@ -68,6 +69,13 @@ const config = await getEntry("config", "site");
 
       <nav class="gap-4 font-thin items-center ml-auto hidden sm:flex text-xl">
         {
+          events.filter((e) => e.data.visible).length > 0 && (
+            <a href="/events" class="hidden lg:inline">
+              Events
+            </a>
+          )
+        }
+        {
           pages
             .filter((page) => !!page.data.visible)
             .toSorted((a, b) => a.data.order - b.data.order)
@@ -78,7 +86,6 @@ const config = await getEntry("config", "site");
             ))
         }
         <!-- <a href="/about" class="hidden lg:inline">About</a> -->
-        <!-- <a href="/events" class="hidden lg:inline">Events</a> -->
         <!-- <a href="/mod-2024" class="hidden lg:inline">Mòd 2024</a> -->
         <!-- <a href="/mod-2025" class="hidden lg:inline">Mòd 2025</a> -->
         <!-- <a href="/history" class="hidden lg:inline">Our History</a> -->
@@ -156,6 +163,11 @@ const config = await getEntry("config", "site");
           class="left-0 top-[104px] w-screen h-[calc(100vh-104px)] bg-white hidden peer-checked:block fixed"
         >
           <nav class="font-thin items-center flex flex-col text-2xl gap-6 mt-8">
+            {
+              events.filter((e) => e.data.visible).length > 0 && (
+                <a href="/events">Events</a>
+              )
+            }
             {
               pages
                 .filter((page) => !!page.data.visible)
