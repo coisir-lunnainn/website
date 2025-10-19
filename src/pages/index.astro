@@ -16,26 +16,22 @@ const config = await getEntry("config", "site");
 
 <Layout title="Home">
   <main>
-    <section class="grid items-end min-h-[700px]">
+    <section class="grid items-end mx-4">
       <Image
         src={config?.data.main_image}
         alt="Members"
         width={1920}
         height={1080}
-        class="w-full row-start-1 col-start-1 self-start"
+        class="w-full row-start-1 col-start-1 self-start rounded-md"
         loading="eager"
       />
       <div
-        class="text-center mt-6 flex flex-col gap-4 max-w-[70ch] mx-auto bg-white row-start-1 col-start-1 p-10"
+        class="text-center sm:mb-4 mt-4 sm:mt-0 flex flex-col gap-1 sm:max-w-[70ch] sm:mx-auto bg-gray-100 rounded-md sm:row-start-1 col-start-1 p-4 md:p-6"
       >
-        <Title>C&Ograve;ISIR LUNNAINN</Title>
-
-        <p class="text-[#668C8C] text-xl">
+        <Title>C&ograve;isir Lunnainn</Title>
+        <p class="text-[#006838] text-xl font-bold">
           Ce&ograve;l - C&agrave;irdeas - Cli&ugrave;
         </p>
-        <Prose>
-          {config?.data.intro}
-        </Prose>
       </div>
     </section>
     <InfoBox src={entry?.data.banner} alt="Choir rehearsal">

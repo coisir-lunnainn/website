@@ -15,7 +15,23 @@ const { Content } = await render(entry!);
 
 <Layout title={entry?.data.title}>
   <main>
-    <section class="grid items-end h-96">
+    <section class="grid items-end mx-4">
+      <Image
+        src={entry?.data.banner}
+        alt="Members"
+        width={1920}
+        height={1080}
+        class="w-full row-start-1 col-start-1 self-start rounded-md"
+        loading="eager"
+      />
+
+      <div
+        class="text-center sm:mb-4 mt-4 sm:mt-0 flex flex-col gap-1 sm:max-w-[70ch] sm:mx-auto bg-gray-100 rounded-md sm:row-start-1 col-start-1 p-4 md:p-6"
+      >
+        <Title>{entry?.data.title}</Title>
+      </div>
+    </section>
+    <!-- <section class="grid items-end h-96">
       <Image
         src={entry?.data.banner}
         alt="Banner Image"
@@ -29,8 +45,8 @@ const { Content } = await render(entry!);
       >
         <Title>{entry?.data.title}</Title>
       </div>
-    </section>
-    <section class="grid items-center mt-12 max-w-[70ch] mx-auto">
+    </section> -->
+    <section class="grid items-center mt-6 max-w-[70ch] mx-auto">
       <Prose>
         <Content />
       </Prose>

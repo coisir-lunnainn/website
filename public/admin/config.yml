@@ -62,4 +62,3 @@ collections:
               media_folder: "/public",
               public_folder: "/"
             }
-          - { label: Intro, name: intro, widget: markdown }

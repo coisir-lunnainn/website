@@ -1,4 +1,5 @@
 ---
+import { Font } from "astro:assets";
 import { Image } from "astro:assets";
 
 interface Props {
@@ -12,9 +13,9 @@ const pages = await getCollection("pages");
 const config = await getEntry("config", "site");
 ---
 
-<!doctype html>
 <html lang="en" class="min-h-full">
   <head>
+    <Font cssVariable="--font-newsreader" preload />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta charset="UTF-8" />
     <meta
@@ -45,8 +46,8 @@ const config = await getEntry("config", "site");
 
     <title>{title} | Còisir Lunnainn</title>
   </head>
-  <body class="min-h-full font-thin mx-auto max-w-[140ch]">
-    <header class="flex items-center px-10 py-4 bg-white sticky top-0">
+  <body class="min-h-full font-thin mx-auto max-w-[140ch] font-serif">
+    <header class="flex items-center p-4 bg-white sticky top-0">
       <a href="/">
         <section class="grid grid-flow-col grid-rows-2">
           <Image
@@ -65,13 +66,13 @@ const config = await getEntry("config", "site");
         </section>
       </a>
 
-      <nav class="gap-3 font-thin items-center ml-auto hidden sm:flex text-xl">
+      <nav class="gap-4 font-thin items-center ml-auto hidden sm:flex text-xl">
         {
           pages
             .filter((page) => !!page.data.visible)
             .toSorted((a, b) => a.data.order - b.data.order)
             .map((page) => (
-              <a class="hidden lg:inline" href={page.data.slug}>
+              <a class="hidden lg:inline link" href={page.data.slug}>
                 {page.data.menu_title}
               </a>
             ))
@@ -82,7 +83,7 @@ const config = await getEntry("config", "site");
         <!-- <a href="/mod-2025" class="hidden lg:inline">Mòd 2025</a> -->
         <!-- <a href="/history" class="hidden lg:inline">Our History</a> -->
         <!-- <a href="/gallery">Gallery</a> -->
-        <a href="https://www.facebook.com/CoisirLunnainn/" target="_blank">
+        <!-- <a href="https://www.facebook.com/CoisirLunnainn/" target="_blank">
           <Image
             src="/facebook.svg"
             alt="Facebook link"
@@ -90,11 +91,11 @@ const config = await getEntry("config", "site");
             height={24}
             class="w-6 h-6"
           />
-        </a>
+        </a> -->
         <!-- <a href="https://twitter.com/CoisirLunnainn" target="_blank">
           <Image src={twitter} alt="Twitter link" class="w-6 h-6" />
         </a> -->
-        <a href="https://www.instagram.com/coisirlunnainn/" target="_blank">
+        <!-- <a href="https://www.instagram.com/coisirlunnainn/" target="_blank">
           <Image
             src="/instagram.svg"
             width={24}
@@ -111,15 +112,11 @@ const config = await getEntry("config", "site");
             alt="Youtube link"
             class="w-6 h-6"
           />
-        </a>
-        <a
-          href="https://www.crowdfunder.co.uk/p/margrat-duncan-grave-restoration"
-          class="rounded-md px-3 py-2 bg-red-400 text-white transition-all hidden lg:inline"
-          >Donate</a
-        >
+        </a> -->
+
         <a
           href="/contact"
-          class="rounded-md px-3 py-2 bg-black text-white transition-all hidden lg:inline"
+          class="rounded-md px-3 ms-3 py-2 bg-black text-white transition-all hidden lg:inline"
           >Get in Touch</a
         >
       </nav>
@@ -214,11 +211,7 @@ const config = await getEntry("config", "site");
                 />
               </a>
             </div>
-            <a
-              href="https://www.crowdfunder.co.uk/p/margrat-duncan-grave-restoration"
-              class="rounded-md px-3 py-2 bg-red-400 text-white transition-all text-lg"
-              >Donate</a
-            >
+
             <a
               href="/contact"
               class="rounded-md px-3 py-2 bg-black text-white transition-all text-lg"
@@ -229,7 +222,7 @@ const config = await getEntry("config", "site");
       </nav>
     </header>
     <slot />
-    <footer class="p-4 bg-[#f0f4f4] mt-12 flex items-center">
+    <footer class="p-4 bg-gray-100 mt-12 flex items-center">
       <section class="grid grid-flow-col grid-rows-1">
         <Image
           src={config?.data.logo}

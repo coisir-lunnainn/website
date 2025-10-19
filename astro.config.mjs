@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import cloudflare from "@astrojs/cloudflare";
 
@@ -21,5 +21,15 @@ export default defineConfig({
     ssr: {
       external: ["node:os", "path", "cloudflare:workers"]
     }
+  },
+  experimental: {
+    fonts: [
+      {
+        name: "Newsreader",
+        cssVariable: "--font-newsreader",
+        provider: fontProviders.google(),
+        fallbacks: ["serif"]
+      }
+    ]
   }
 });

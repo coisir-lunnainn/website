@@ -5,21 +5,26 @@ interface Props {
   alt: string;
 }
 
-const { src, alt } = Astro.props;
+const { src } = Astro.props;
 ---
 
 <section
-  class="grid items-center mt-12 grid-flow-row md:grid-rows-1 md:grid-cols-2 lg:grid-cols-1"
+  class="grid items-center m-4 gap-4 grid-flow-row grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-2"
 >
-  <Image
+  <div
+    style={{ backgroundImage: `url('${src}')` }}
+    class="row-start-1 col-start-1 w-full h-full self-start pl-0 object-contain rounded-md main bg-cover bg-center"
+  >
+  </div>
+  <!-- <Image
     {src}
     {alt}
     width="1920"
     height="1080"
-    class="row-start-1 col-start-1 w-full lg:w-[60%] self-start pl-0 h-[420px] object-cover"
-  />
+    class="row-start-1 col-start-1 w-full self-start pl-0 max-h-[420px] object-cover rounded-md"
+  /> -->
   <div
-    class="mt-6 flex flex-col gap-4 w-full lg:max-w-[60%] mx-auto bg-white row-start-2 md:row-start-1 col-start-1 md:col-start-2 lg:col-start-1 p-10 lg:ml-[40%]"
+    class="w-full mx-auto row-start-2 col-start-1 md:row-start-1 md:col-start-2 bg-gray-100 rounded-md h-full"
   >
     <slot />
   </div>

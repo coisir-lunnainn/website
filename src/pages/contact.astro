@@ -4,6 +4,7 @@ export const prerender = false;
 import Layout from "../layouts/Layout.astro";
 import Title from "../components/Title.astro";
 import { createMimeMessage } from "mimetext";
+import Prose from "../components/Prose.astro";
 
 let submitted = false;
 
@@ -75,66 +76,74 @@ Message: ${message}
       </div>
     </section>
     <section class="mt-12 max-w-[70ch] mx-auto">
-      <form class="w-full" name="contact" method="POST">
-        <div class="w-full px-3 mb-6">
-          <label class="block text-gray-700 text-lg mb-2" for="name">
-            What's your name?
-          </label>
-          <input
-            class="appearance-none block w-full bg-gray-200 text-gray-700
-                  border-2 border-gray-200 rounded py-3 px-4 mb-3 leading-tight
-                  focus:outline-none focus:bg-white focus:border-gray-500"
-            name="name"
-            type="text"
-            placeholder="Margrat Duncan"
-          />
-        </div>
-        <div class="w-full px-3 mb-6">
-          <label class="block text-gray-700 text-lg mb-2" for="email">
-            What's your email?
-          </label>
-          <input
-            class="appearance-none block w-full bg-gray-200 text-gray-700
-                  border-2 border-gray-200 rounded py-3 px-4 mb-3 leading-tight
-                  focus:outline-none focus:bg-white focus:border-gray-500"
-            name="email"
-            type="email"
-            placeholder="margrat.duncan@example.com"
-            required
-          />
-        </div>
+      <Prose>
+        <p class="text-center">
+          We'd love to hear from you! Complete the form below or email us at <a
+            href="mailto:coisirlunnainn@gmail.com">coisirlunnainn@gmail.com</a
+          >
+        </p>
 
-        <div class="w-full px-3 mb-6">
-          <label class="block text-gray-700 text-lg mb-2" for="message">
-            What's your message?
-          </label>
-          <textarea
-            class="appearance-none block w-full bg-gray-200 text-gray-700
-                  border-2 border-gray-200 rounded py-3 px-4 mb-3 leading-tight
+        <form class="w-full" name="contact" method="POST">
+          <div class="w-full px-3 mb-6">
+            <label class="block text-gray-700 text-lg mb-2" for="name">
+              What's your name?
+            </label>
+            <input
+              class="appearance-none block w-full bg-gray-200 text-gray-700
+                  border-2 border-gray-200 rounded-md py-3 px-4 mb-3 leading-tight
+                  focus:outline-none focus:bg-white focus:border-gray-500"
+              name="name"
+              type="text"
+              placeholder="Margrat Duncan"
+            />
+          </div>
+          <div class="w-full px-3 mb-6">
+            <label class="block text-gray-700 text-lg mb-2" for="email">
+              What's your email?
+            </label>
+            <input
+              class="appearance-none block w-full bg-gray-200 text-gray-700
+                  border-2 border-gray-200 rounded-md py-3 px-4 mb-3 leading-tight
+                  focus:outline-none focus:bg-white focus:border-gray-500"
+              name="email"
+              type="email"
+              placeholder="margrat.duncan@example.com"
+              required
+            />
+          </div>
+
+          <div class="w-full px-3 mb-6">
+            <label class="block text-gray-700 text-lg mb-2" for="message">
+              What's your message?
+            </label>
+            <textarea
+              class="appearance-none block w-full bg-gray-200 text-gray-700
+                  border-2 border-gray-200 rounded-md py-3 px-4 mb-3 leading-tight
                   focus:outline-none focus:bg-white focus:border-gray-500
                   resize-none h-32"
-            name="message"
-            placeholder="I'd like to join the choir/I'd like to invite the choir to sing at an event etc..."
-            required></textarea>
-        </div>
+              name="message"
+              placeholder="I'd like to join the choir/I'd like to invite the choir to sing at an event etc..."
+              required></textarea>
+          </div>
 
-        <div class="w-full px-3 mb-6 mt-8 flex">
-          <button
-            type="submit"
-            class="bg-black cursor-pointer
-                  appearance-none block rounded py-3 px-4 leading-tight flex-grow focus:outline-none
+          <div class="w-full px-3 mb-6 mt-6 flex">
+            <button
+              type="submit"
+              class="bg-black cursor-pointer
+                  appearance-none block rounded-md py-3 px-4 leading-tight flex-grow focus:outline-none
                   text-center font-bold text-white"
-            >Submit</button
-          >
-        </div>
-        {
-          submitted ? (
-            <p class="text-lg text-center">We'll be in touch soon!</p>
-          ) : null
-        }
-      </form>
+              >Submit</button
+            >
+          </div>
+          {
+            submitted ? (
+              <p class="text-lg text-center">We'll be in touch soon!</p>
+            ) : null
+          }
+        </form>
+      </Prose>
     </section>
   </main>
-</Layout>
 
-<style></style>
+  <style></style>
+</Layout>

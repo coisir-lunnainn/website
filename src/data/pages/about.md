@@ -6,10 +6,10 @@ banner: /img_9172.webp
 order: 2
 menu_title: About
 slug: about
-visible: true
+visible: false
 ---
 
-Còisir Lunnainn was founded in 1891 and is proud to be the world's oldest Scottish Gaelic choir.
+Còisir Lunnainn was founded in 1891 and is proud to be the world's oldest Scottish Gaelic choir. We're a friendly non-auditioned choir, and we're always looking for new members!
 
 We rehearse on Tuesdays at 7:30pm at Crown Court Church hall in Covent Garden, London.
 
