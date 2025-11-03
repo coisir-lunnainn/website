@@ -1,16 +1,21 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import groupPhoto from "../images/mod-24-fans.webp";
-import massedChoirs from "../images/massed-choirs.webp";
 import Title from "../components/Title.astro";
 import Prose from "../components/Prose.astro";
-import InfoBox from "../components/InfoBox.astro";
 
 import { getEntry, render } from "astro:content";
+import { getCollection } from "astro:content";
 
-const entry = await getEntry("pages", Astro.params.page!);
+const entry = await getEntry("pages", Astro.params.page);
 const { Content } = await render(entry!);
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+  return pages.map((page) => ({
+    params: { page: page.id }
+  }));
+}
 ---
 
 <Layout title={entry?.data.title}>

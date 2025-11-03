@@ -19,7 +19,7 @@ function renderBody(status: unknown, content: unknown) {
   return blob;
 }
 
-export const GET: APIRoute = async ({ request, locals }) => {
+export const GET: APIRoute = async ({ request }) => {
   const client_id = env.GITHUB_CLIENT_ID;
   const client_secret = env.GITHUB_CLIENT_SECRET;
 

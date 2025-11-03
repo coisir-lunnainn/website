@@ -1,0 +1,14 @@
+---
+import type { getCollection } from "astro:content";
+import { render } from "astro:content";
+
+interface Props {
+  event: Awaited<ReturnType<typeof getCollection<"events">>>[number];
+}
+
+const { event } = Astro.props;
+
+const { Content } = await render(event);
+---
+
+<Content />

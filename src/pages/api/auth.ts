@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
 import { env } from "cloudflare:workers";
 export const prerender = false;
-export const GET: APIRoute = ({ request, locals }) => {
+export const GET: APIRoute = () => {
   const client_id = env.GITHUB_CLIENT_ID as string;
 
   try {

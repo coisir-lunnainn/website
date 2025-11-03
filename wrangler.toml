@@ -3,11 +3,9 @@ name = "london-gaelic-choir"
 compatibility_date = "2024-10-22"
 compatibility_flags = ["nodejs_compat"]
 main = "./dist/_worker.js/index.js"
-assets = { directory = "./dist", binding = "ASSETS" }
+assets = { directory = "./dist", binding = "ASSETS",  html_handling = "drop-trailing-slash" }
 
 vars = { GITHUB_CLIENT_ID = "Ov23liGzAsxk1oNlWZTj"}
-
-# routes = [{pattern = "coisirlunnainn.dev", custom_domain = true}]
 
 [observability]
 enabled = true

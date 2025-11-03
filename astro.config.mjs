@@ -7,7 +7,6 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), sitemap()],
-  output: "server",
   site: "https://coisirlunnainn.org",
   adapter: cloudflare({
     imageService: "compile"

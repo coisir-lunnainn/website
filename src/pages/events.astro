@@ -1,19 +1,16 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "astro:assets";
-import ceilidh from "../images/sng-ceilidh.webp";
-import members from "../images/mod-24-choir.webp";
 import Title from "../components/Title.astro";
 import Prose from "../components/Prose.astro";
 import { getCollection } from "astro:content";
-import { render } from "astro:content";
 import InfoBox from "../components/InfoBox.astro";
-
+import Event from "../components/Event.astro";
+import { Image } from "astro:assets";
+import { getEntry } from "astro:content";
 const events = (await getCollection("events")).filter((e) => e.data.visible);
 
 const currentEvent = events[0];
-
-const { Content } = await render(currentEvent);
+const config = await getEntry("config", "site");
 ---
 
 <Layout title="Events">
@@ -22,79 +19,106 @@ const { Content } = await render(currentEvent);
       <div
         class="text-center sm:mb-4 mt-4 sm:mt-0 flex flex-col gap-1 sm:max-w-[70ch] sm:mx-auto rounded-md sm:row-start-1 col-start-1 p-4 md:p-6"
       >
-        <Title>{currentEvent.data.title}</Title>
+        <Title>{currentEvent?.data.title ?? "No upcoming events..."}</Title>
       </div>
     </section>
+    {
+      currentEvent && (
+        <InfoBox src={currentEvent?.data.banner}>
+          <Prose>
+            <Event event={currentEvent} />
+          </Prose>
+        </InfoBox>
+      )
+    }
 
-    <InfoBox src={currentEvent?.data.banner}>
-      <Prose>
-        <Content />
-      </Prose>
-    </InfoBox>
-
-    <div
-      class="mx-4 grid bg-gray-100 rounded-md h-full grid-flow-row grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-2"
-    >
-      <div class="py-4">
-        <Prose>
-          <table>
-            <thead><tr><th>DETAILS</th></tr></thead>
-            <tbody>
-              <tr>
-                <td>Date:</td><td>{currentEvent?.data.date}</td>
-              </tr>
-              <tr>
-                <td>Time:</td><td>{currentEvent?.data.time}</td>
-              </tr>
-              <tr>
-                <td>Location:</td>
-                <td>{currentEvent?.data.location}</td>
-              </tr>
-              <tr>
-                <td>Tickets:</td>
-                <td>
-                  {
-                    currentEvent?.data.tickets_link ? (
-                      <a href={currentEvent?.data.tickets_link}>
-                        {currentEvent?.data.tickets}
-                      </a>
-                    ) : (
-                      currentEvent?.data.tickets
-                    )
-                  }
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p>
-            If you need any more information, please contact <a
-              href="mailto:coisirlunnainn@gmail.com">coisirlunnainn@gmail.com</a
-            >. We hope to see you there!
-          </p>
-          {
-            currentEvent?.data.tickets_link && (
-              <div class="text-center mt-3">
-                <a
-                  href={currentEvent?.data.tickets_link}
-                  class="rounded-md px-3 py-2 bg-black text-white transition-all w-auto text-lg no-underline"
-                >
-                  Buy tickets!
+    {
+      currentEvent && (
+        <div class="mx-4 grid bg-gray-100 rounded-md h-full grid-flow-row grid-rows-2 grid-cols-1 md:grid-rows-1 md:grid-cols-2">
+          <div class="py-4">
+            <Prose>
+              <table>
+                <thead>
+                  <tr>
+                    <th>DETAILS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <>
+                      <td>Date:</td>
+                      <td>{currentEvent?.data.date}</td>
+                    </>
+                  </tr>
+                  <tr>
+                    <>
+                      <td>Time:</td>
+                      <td>{currentEvent?.data.time}</td>
+                    </>
+                  </tr>
+                  <tr>
+                    <td>Location:</td>
+                    <td>{currentEvent?.data.location}</td>
+                  </tr>
+                  <tr>
+                    <td>Tickets:</td>
+                    <td>
+                      {currentEvent?.data.tickets_link ? (
+                        <a href={currentEvent?.data.tickets_link}>
+                          {currentEvent?.data.tickets}
+                        </a>
+                      ) : (
+                        currentEvent?.data.tickets
+                      )}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>
+                If you need any more information, please contact{" "}
+                <a href="mailto:coisirlunnainn@gmail.com">
+                  coisirlunnainn@gmail.com
                 </a>
-              </div>
-            )
-          }
-        </Prose>
-      </div>
-      <iframe
-        src={currentEvent?.data.maps}
-        width="600"
-        height="450"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        class="bg-white w-full h-full col-span-2 min-h-96 row-start-2 col-start-1 md:row-start-1 md:col-start-2 rounded-md"
-      ></iframe>
-    </div>
+                . We hope to see you there!
+              </p>
+              {currentEvent?.data.tickets_link && (
+                <div class="text-center mt-3">
+                  <a
+                    href={currentEvent?.data.tickets_link}
+                    class="rounded-md px-3 py-2 bg-black text-white transition-all w-auto text-lg no-underline"
+                  >
+                    Buy tickets!
+                  </a>
+                </div>
+              )}
+            </Prose>
+          </div>
+          <iframe
+            src={currentEvent?.data.maps}
+            width="600"
+            height="450"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="bg-white w-full h-full col-span-2 min-h-96 row-start-2 col-start-1 md:row-start-1 md:col-start-2 rounded-md"
+          />
+        </div>
+      )
+    }
+    {
+      !currentEvent && (
+        <section class="grid items-end mx-4">
+          <Image
+            src={config?.data.main_image}
+            alt="Members"
+            width={1920}
+            height={1080}
+            class="w-full row-start-1 col-start-1 self-start rounded-md opacity-50"
+            loading="eager"
+          />
+        </section>
+      )
+    }
   </main>
 </Layout>
