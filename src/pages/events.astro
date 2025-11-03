@@ -60,18 +60,20 @@ const config = await getEntry("config", "site");
                     <td>Location:</td>
                     <td>{currentEvent?.data.location}</td>
                   </tr>
-                  <tr>
-                    <td>Tickets:</td>
-                    <td>
-                      {currentEvent?.data.tickets_link ? (
-                        <a href={currentEvent?.data.tickets_link}>
-                          {currentEvent?.data.tickets}
-                        </a>
-                      ) : (
-                        currentEvent?.data.tickets
-                      )}
-                    </td>
-                  </tr>
+                  {currentEvent?.data.tickets && (
+                    <tr>
+                      <td>Tickets:</td>
+                      <td>
+                        {currentEvent?.data.tickets_link ? (
+                          <a href={currentEvent?.data.tickets_link}>
+                            {currentEvent?.data.tickets}
+                          </a>
+                        ) : (
+                          currentEvent?.data.tickets
+                        )}
+                      </td>
+                    </tr>
+                  )}
                 </tbody>
               </table>
               <p>

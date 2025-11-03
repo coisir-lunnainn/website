@@ -54,7 +54,12 @@ collections:
       - { label: "Time", name: "time", widget: "string" }
       - { label: "Location", name: "location", widget: "string" }
 
-      - { label: "Tickets (description)", name: "tickets", widget: "string" }
+      - {
+          label: "Tickets (description)",
+          name: "tickets",
+          widget: "string",
+          required: false
+        }
       - {
           label: "Tickets (link)",
           name: "tickets_link",
