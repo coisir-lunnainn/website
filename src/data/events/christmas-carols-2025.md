@@ -1,6 +1,6 @@
 ---
 title: Christmas Carols 2025
-banner: /carols-2025-3-.png
+banner: /carols-2025-3-.webp
 date: 13th December 2025
 time: 6.30pm
 location: Lumen United Reform Church, 88 Tavistock Pl, London WC1H 9RS
