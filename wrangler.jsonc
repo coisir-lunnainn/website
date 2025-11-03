@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "compatibility_date": "2024-10-22",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "./dist/_worker.js/index.js",
+  "name": "london-gaelic-choir",
+  "send_email": [
+    {
+      "destination_address": "coisirlunnainn@gmail.com",
+      "name": "SEND"
+    }
+  ],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist",
+    "html_handling": "drop-trailing-slash"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "GITHUB_CLIENT_ID": "Ov23liGzAsxk1oNlWZTj"
+  },
+  "routes": [{ "pattern": "www.coisirlunnainn.org", "custom_domain": true }]
+}
