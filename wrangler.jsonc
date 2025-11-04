@@ -19,7 +19,8 @@
     "enabled": true
   },
   "vars": {
-    "GITHUB_CLIENT_ID": "Ov23liGzAsxk1oNlWZTj"
+    "GITHUB_CLIENT_ID": "Ov23liGzAsxk1oNlWZTj",
+    "SITE_KEY": "0x4AAAAAAB-8r-NGIS50M4J6"
   },
   "routes": [{ "pattern": "www.coisirlunnainn.org", "custom_domain": true }]
 }

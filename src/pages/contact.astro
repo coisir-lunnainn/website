@@ -7,50 +7,83 @@ import { createMimeMessage } from "mimetext";
 import Prose from "../components/Prose.astro";
 
 let submitted = false;
+let error;
+
+export async function processTurnstile(
+  turnstile: string
+): Promise<{ success: boolean }> {
+  const url = "https://challenges.cloudflare.com/turnstile/v0/siteverify";
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        secret: env.SITE_VERIFY,
+        response: turnstile
+      })
+    });
+
+    const data = await response.json<{ success: boolean }>();
+
+    return data;
+  } catch {
+    return { success: false };
+  }
+}
 
 if (Astro.request.method === "POST") {
   try {
-    const { EmailMessage } = await import("cloudflare:email");
-
     const data = await Astro.request.formData();
     const name = data.get("name");
     const email = data.get("email");
     const message = data.get("message");
 
-    const msg = createMimeMessage();
-    msg.setSender({
-      name: "Còisir Lunnainn Contact Form",
-      addr: "contact@coisirlunnainn.org"
-    });
-    msg.setRecipient("coisirlunnainn@gmail.com");
-    msg.setSubject("New Message Received");
-    msg.addMessage({
-      contentType: "text/plain",
-      data: `A new message has been received on the Còisir Lunnainn website:
+    const { success: isValid } = await processTurnstile(
+      data.get("cf-turnstile-response") as string
+    );
+    if (isValid) {
+      const { EmailMessage } = await import("cloudflare:email");
+
+      const msg = createMimeMessage();
+      msg.setSender({
+        name: "Còisir Lunnainn Contact Form",
+        addr: "contact@coisirlunnainn.org"
+      });
+      msg.setRecipient("coisirlunnainn@gmail.com");
+      msg.setSubject("New Message Received");
+      msg.addMessage({
+        contentType: "text/plain",
+        data: `A new message has been received on the Còisir Lunnainn website:
 
 Name: ${name}
 Email: ${email}
 Message: ${message}
 `
-    });
-    msg.addMessage({
-      contentType: "text/html",
-      data: `<p>A new message has been received on the Còisir Lunnainn website:</p>
+      });
+      msg.addMessage({
+        contentType: "text/html",
+        data: `<p>A new message has been received on the Còisir Lunnainn website:</p>
 
 <p><b>Name:</b> ${name}</p>
 <p><b>Email:</b> ${email}</p>
 <p><b>Message:</b> ${message}</p>
 `
-    });
+      });
 
-    const e = new EmailMessage(
-      "contact@coisirlunnainn.org",
-      "coisirlunnainn@gmail.com",
-      msg.asRaw()
-    );
-    await env.SEND.send(e);
+      const e = new EmailMessage(
+        "contact@coisirlunnainn.org",
+        "coisirlunnainn@gmail.com",
+        msg.asRaw()
+      );
+      await env.SEND.send(e);
 
-    submitted = true;
+      submitted = true;
+    } else {
+      error = "Please verify you're a human";
+    }
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -60,6 +93,11 @@ Message: ${message}
 ---
 
 <Layout title="Contact">
+  <script
+    is:inline
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer></script>
   <main>
     <section class="grid items-end h-32">
       <!-- <Image
@@ -126,7 +164,20 @@ Message: ${message}
               required></textarea>
           </div>
 
-          <div class="w-full px-3 mb-6 mt-6 flex">
+          <div class="flex px-3">
+            <div
+              class="cf-turnstile w-full"
+              data-size="flexible"
+              data-sitekey={env.SITE_KEY}
+            >
+            </div>
+          </div>
+          {
+            error ? (
+              <p class="text-lg text-center text-red-500">{error}</p>
+            ) : null
+          }
+          <div class="w-full px-3 mb-6 mt-2 flex">
             <button
               type="submit"
               class="bg-black cursor-pointer
