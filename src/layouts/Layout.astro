@@ -12,6 +12,14 @@ const pages = await getCollection("pages");
 const events = await getCollection("events");
 
 const config = await getEntry("config", "site");
+
+const modPages = pages
+  .filter((page) => !!page.data.visible && page.data.group === "mod")
+  .toSorted((a, b) => a.data.order - b.data.order);
+
+const otherPages = pages
+  .filter((page) => !!page.data.visible && page.data.group !== "mod")
+  .toSorted((a, b) => a.data.order - b.data.order);
 ---
 
 <html lang="en" class="min-h-full">
@@ -76,14 +84,32 @@ const config = await getEntry("config", "site");
           )
         }
         {
-          pages
-            .filter((page) => !!page.data.visible)
-            .toSorted((a, b) => a.data.order - b.data.order)
-            .map((page) => (
-              <a class="hidden lg:inline link" href={page.data.slug}>
-                {page.data.menu_title}
-              </a>
-            ))
+          otherPages.map((page) => (
+            <a class="hidden lg:inline link" href={page.data.slug}>
+              {page.data.menu_title}
+            </a>
+          ))
+        }
+        {
+          modPages.length > 0 && (
+            <div class="relative group/mod hidden lg:inline-block">
+              <span class="cursor-default select-none">
+                At the Mòd ▾
+              </span>
+              <div class="absolute right-0 top-full pt-1 hidden group-hover/mod:block z-50">
+                <div class="bg-white shadow-lg rounded-md flex flex-col py-2 min-w-max">
+                  {modPages.map((page) => (
+                    <a
+                      class="px-4 py-2 hover:bg-gray-50 link"
+                      href={page.data.slug}
+                    >
+                      {page.data.menu_title}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )
         }
         <!-- <a href="/about" class="hidden lg:inline">About</a> -->
         <!-- <a href="/mod-2024" class="hidden lg:inline">Mòd 2024</a> -->
