@@ -21,14 +21,12 @@ export default defineConfig({
       external: ["node:os", "path", "cloudflare:workers"]
     }
   },
-  experimental: {
-    fonts: [
-      {
-        name: "Newsreader",
-        cssVariable: "--font-newsreader",
-        provider: fontProviders.google(),
-        fallbacks: ["serif"]
-      }
-    ]
-  }
+  fonts: [
+    {
+      name: "Newsreader",
+      cssVariable: "--font-newsreader",
+      provider: fontProviders.google(),
+      fallbacks: ["serif"]
+    }
+  ]
 });

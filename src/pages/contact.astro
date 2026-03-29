@@ -1,10 +1,11 @@
 ---
-const { env } = Astro.locals.runtime;
 export const prerender = false;
 import Layout from "../layouts/Layout.astro";
 import Title from "../components/Title.astro";
 import { createMimeMessage } from "mimetext";
 import Prose from "../components/Prose.astro";
+import { env } from "cloudflare:workers";
+import { EmailMessage } from "cloudflare:email";
 
 let submitted = false;
 let error;
@@ -29,7 +30,8 @@ export async function processTurnstile(
     const data = await response.json<{ success: boolean }>();
 
     return data;
-  } catch {
+  } catch (e) {
+    console.error(e);
     return { success: false };
   }
 }
@@ -45,7 +47,10 @@ if (Astro.request.method === "POST") {
       data.get("cf-turnstile-response") as string
     );
     if (isValid) {
-      const { EmailMessage } = await import("cloudflare:email");
+      await env.CONTACT_DETAILS.put(
+        Date.now(),
+        JSON.stringify({ name, email, message }, null, 2)
+      );
 
       const msg = createMimeMessage();
       msg.setSender({
@@ -168,7 +173,7 @@ Message: ${message}
             <div
               class="cf-turnstile w-full"
               data-size="flexible"
-              data-sitekey={env.SITE_KEY}
+              data-sitekey="0x4AAAAAAB-8r-NGIS50M4J6"
             >
             </div>
           </div>
