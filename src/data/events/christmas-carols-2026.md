@@ -1,6 +1,6 @@
 ---
 title: Christmas Carols 2026
-banner: /carols-2025-3-.webp
+banner: /dsc00107.jpeg
 date: 5th December 2026
 time: 6.30pm
 location: Crown Court Church of Scotland, WC2B 5EZ
